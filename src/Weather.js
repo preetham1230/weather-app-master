@@ -66,12 +66,44 @@ class Weather extends React.Component{
     }
 
     
-    pageHandler=(a ,b)=>{
-        console.log("a",a,b);
-        this.setState({
-            startIndex: a,
-            endIndex: b
-        })
+    pageHandler=(e)=>{
+        console.log("a",e.target.value);
+
+        if(e.target.value==1)
+        {
+            this.setState({
+                startIndex:0, 
+                endIndex: 7
+            })
+        }
+        if(e.target.value==2)
+        {
+            this.setState({
+                startIndex:8, 
+                endIndex: 15
+            })
+        }
+        if(e.target.value==3)
+        {
+            this.setState({
+                startIndex:16, 
+                endIndex: 23
+            })
+        }
+        if(e.target.value==4)
+        {
+            this.setState({
+                startIndex:24, 
+                endIndex: 31
+            })
+        }
+        if(e.target.value==5)
+        {
+            this.setState({
+                startIndex:32, 
+                endIndex: 40
+            })
+        }
     }
 
     render(){
@@ -86,7 +118,7 @@ class Weather extends React.Component{
             return(
                 <Container>
                     <Row>
-                <div style={{padding:'0px 0px 30px 0px ', border: '1px solid', width:'400px'}}>
+                <div style={{padding:'10px ', border: '1px solid', width:'400px'}}>
                     <div style={{background : 'grey' }}> City: {this.props.weathdata.name}, Country: {this.props.weathdata.sys.country}</div>
                     <div>MAIN: {this.props.weathdata.weather.map(x=><span>{x.main},</span>)}</div>
                     <div>DESC: {this.props.weathdata.weather.map(x=><span>{x.description},</span>)}</div>
@@ -101,12 +133,15 @@ class Weather extends React.Component{
 
                 
                 {(this.state.showdata == 40) ?  
-                <div>
+                
+                <div style={{paddingTop: "20px"}}>
+                    <hr></hr>
                     <div>
                         <button class="btn btn-primary" style={{float:"right"}} onClick={this.closeHandler}> Close</button>
                     </div>
+                    <div style={{background : 'grey', width: "500px", height:"35px" }}> City: {this.props.weathdata.name}, Country: {this.props.weathdata.sys.country}</div>
                 <Table>
-                    <thead>
+                    <thead style={{backgroundColor: "lightgrey"}}>
                     <tr>
                         <th>Index</th>
                         <th> Date</th> 
@@ -120,7 +155,7 @@ class Weather extends React.Component{
                     
                         {this.props.forecast.list.map((y,index)=>
                        
-                            <tr>
+                            <tr className={(index >=  this.state.startIndex  && index <= this.state.endIndex) ? '':'hidden'}>
                                 <td>{index}</td>
                                 <td>{y.dt_txt}</td>
                                 <td>{y.main.temp}</td>
@@ -136,11 +171,11 @@ class Weather extends React.Component{
                     
                 </Table>
                 <span style={{float:"right"}}>
-                    <button>1</button>
-                    <button>2</button>
-                    <button>3</button>
-                    <button>4</button>
-                    <button>5</button>
+                    <button onClick={this.pageHandler} value = "1">1</button>
+                    <button onClick={this.pageHandler} value = "2">2</button>
+                    <button onClick={this.pageHandler} value = "3">3</button>
+                    <button onClick={this.pageHandler} value = "4">4</button>
+                    <button onClick={this.pageHandler} value = "5">5</button>
                 </span>
                 </div>
                 

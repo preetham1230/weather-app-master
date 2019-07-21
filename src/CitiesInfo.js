@@ -36,7 +36,6 @@ changeHandler=(e)=>{
                 this.forecastdata = rep.data;
               console.log("Forecast data", this.forecastdata);
               
-              //this.flag = true;
           });    
             this.tempid= e.target.value;
             setTimeout(()=>{
@@ -46,28 +45,14 @@ changeHandler=(e)=>{
                 console.log("Weather data", this.weatherData);
                 this.props.dispatch({ type: "CITYSELECTED", payload: this.cityId, payData:this.weatherData, forecastData:this.forecastdata});
               });
-            },500);
-
-           
-        /* axios.get('http://api.openweathermap.org/data/2.5/weather?id='+e.target.value+'&appid=a30f79a44d74a7b2c4c8f414d958a23e')
-          .then(res => {
-              this.weatherData = res.data;
-            console.log("Weather data", this.weatherData);
-            this.props.dispatch({ type: "CITYSELECTED", payload: this.cityId, payData:this.weatherData, forecastData:this.forecastdata});
-         */
-          /*setTimeout(()=>{
-            this.props.dispatch({ type: "CITYSELECTED", payload: this.cityId, payData:this.weatherData});
-          },2000);*/
-          
+            },1000);
       }
   
   render()
   {
-    
-
     return(
       <div>
-        <div>
+        <div style={{align: "left", padding: "30px 70px"}}>
           <select onChange={this.changeHandler}>
             
             {this.citiesList.map(post => (
@@ -79,8 +64,7 @@ changeHandler=(e)=>{
             }
           
           </select>
-      </div>
-        
+      </div>      
       
     </div>
     );

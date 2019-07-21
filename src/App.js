@@ -11,12 +11,15 @@ import {connect} from 'react-redux';
 export default class App extends React.Component{
  
   render(){
-    
-
     return(
       <Provider store = {store}>
         
         <div className="App">
+          <header className="App-header">
+            <p>
+              Redux/Weather App
+            </p>
+          </header>
         <CitiesInfo/>
         <Weather/>  
         </div>
